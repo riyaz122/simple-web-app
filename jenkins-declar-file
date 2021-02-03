@@ -1,0 +1,10 @@
+pipeline {
+    agent any
+    stages{
+        stage("Git Checkout"){
+            steps{
+                git branch: 'main', credentialsId: 'riyaz-git-id', url: 'https://github.com/riyaz122/simple-web-app.git'
+            }
+        }
+    }
+}
