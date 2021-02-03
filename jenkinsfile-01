@@ -23,12 +23,12 @@ pipeline {
 						 
 				]
 			     ], credentialsId: 'nexus3_ID', 
-				   groupId: 'in.javahome', 
-				   nexusUrl: '172.31.10.138:8081', 
-				   nexusVersion: 'nexus3', 
-				   protocol: 'http', 
-				   repository: 'codd-app-release', 
-				   version: "${mavenPom.version}"
+				groupId: 'in.javahome', 
+				nexusUrl: '172.31.10.138:8081', 
+				nexusVersion: 'nexus3', 
+				protocol: 'http', 
+				repository: 'codd-app-release', 
+				version: "${mavenPom.version}"
 			  
 	     }
 	  }
