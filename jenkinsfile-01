@@ -11,8 +11,7 @@ pipeline {
         }
 		stage('Upload artifacts to nexus'){
 		   steps{
-		      def mavenPom = readMavenPom 'pom.xml'
-			  
+		     def mavenPom = readMavenPom "pom.xml"
 		       nexusArtifactUploader artifacts: [
 			        [
 					    artifactId: 'simple-app', 
