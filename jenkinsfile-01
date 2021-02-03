@@ -11,12 +11,13 @@ pipeline {
         }
 		stage('Upload artifacts to nexus'){
 		   steps{
-		     def mavenPom = readMavenPom file: 'pom.xml'
+		   
+		     def pom = readMavenPom file: 'pom.xml'
 		       nexusArtifactUploader artifacts: [
 			        [
 					    artifactId: 'simple-app', 
 					    classifier: '', 
-					    file: "target/simple-app-${mavenPom.version}.war", 
+					    file: "target/simple-app-${pom.version}.war", 
 					    type: 'war'
 						 
 						 
@@ -27,7 +28,7 @@ pipeline {
 		           nexusVersion: 'nexus3', 
 		           protocol: 'http', 
 			   repository: 'codd-app-release', 
-			   version: "${mavenPom.version}"
+			   version: "${pom.version}"
 	 }
 	}
     }
