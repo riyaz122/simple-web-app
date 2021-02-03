@@ -30,8 +30,8 @@ pipeline {
 				repository: 'codd-app-release', 
 				version: "${mavenPom.version}"
 			  
-	     }
-	  }
-	}
-    }
+	                  }
+	             }
+            }
+       }
 }
