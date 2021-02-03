@@ -3,8 +3,8 @@ pipeline {
     tools {
         maven 'maven3'
     }
-    stages("Build stage"){
-        stage{
+    stages{
+        stage('Build'){
             steps{
                 sh script: 'mvn clean package'
             }
