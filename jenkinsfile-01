@@ -11,8 +11,7 @@ pipeline {
         }
 		stage('Upload artifacts to nexus'){
 		   steps{
-		      
-		        nexusArtifactUploader artifacts: [
+		       nexusArtifactUploader artifacts: [
 			        [
 					    artifactId: 'simple-app', 
 						classifier: '', 
@@ -27,10 +26,8 @@ pipeline {
 				   nexusVersion: 'nexus3', 
 				   protocol: 'http', 
 				   repository: 'codd-app-release', 
-				   version: '2.0.0',
-			  
-			     
-		       }
+				   version: '2.0.0'
 		   }
-       }
+		}
+    }
 }
