@@ -1,5 +1,8 @@
 pipeline {
     agent any 
+    
+    def mavenPom = readMavenPom file: 'pom.xml'
+    
     tools {
         maven 'maven3'
     }
@@ -12,7 +15,7 @@ pipeline {
 		stage('Upload artifacts to nexus'){
 		   steps{
 		      script{
-			    def mavenPom = readMavenPom file: 'pom.xml'
+			    
 		             nexusArtifactUploader artifacts: [
 			        [
 					    artifactId: 'simple-app', 
