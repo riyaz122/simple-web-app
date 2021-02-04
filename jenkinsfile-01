@@ -13,13 +13,12 @@ pipeline {
 		   steps{
 		      script{
 			        def mavenPom = readMavenPom file: 'pom.xml'
-				def version = pom.version
 
 		                nexusArtifactUploader artifacts: [
 			          [
 					    artifactId: 'simple-app', 
 					    classifier: '', 
-					    file: "target/simple-app-${pom.version}.war", 
+					    file: "target/simple-app-${mavenPom.version}.war", 
 					    type: 'war'
 						 
 						 
@@ -30,7 +29,7 @@ pipeline {
 				nexusVersion: 'nexus3', 
 				protocol: 'http', 
 				repository: 'codd-app-release', 
-				version: "${pom.version}"
+				version: "${mavenPom.version}"
 			  
 	                  }
 	             }
