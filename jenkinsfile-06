@@ -1,4 +1,4 @@
-currentBuild.displayName = "codd-app-#"+currentBuild.name 
+currentBuild.displayName = "codd-app-#"+currentBuild.number
 pipeline {
     agent any 
     tools {
