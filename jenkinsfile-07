@@ -1,10 +1,10 @@
+currentBuild.displayName = "codd-app-#"+currentBuild.number
+
 pipeline {
     agent any 
     tools {
         maven 'maven3'
     }
-	
-	currentBuild.displayName = "codd-app-#"+currentBuild.number
 	
     stages{
         stage('Build'){
