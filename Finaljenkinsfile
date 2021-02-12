@@ -1,5 +1,5 @@
 pipeline {
-    agent any
+    agent any 
     tools {
         maven 'maven3'
     }
@@ -8,27 +8,31 @@ pipeline {
             steps{
                 sh script: 'mvn clean package'
             }
-        }  
-        stage('upload artifacts into Nexus'){
-           stepts{
-               nexusArtifactUploader artifacts: [
-                     [
-                          artifactId: 'simple-app',
-                          classifier: '',
-                          file: 'target/simple-app-4.0.0.war',
-                          type: 'war'
-                            ]
-                          
-                     ], credentialsId: 'nexus3_ID',
-                        groupId: 'in.javahome',
-                        nexusUrl: '18.191.36.142:8081/',
-                        nexusVersion: 'nexus3',
-                        protocol: 'http',
-                        repository: 'codd-app-release',
-                        version: 'nexus3'
-           
-           
-           }
         }
-    }
+		stage('Upload artifacts to nexus'){
+		   steps{
+		      script{
+			        def version = sh script: 'mvn help:evaluate -Dexpression=project.version -q -DforceStdout', returnStdout: true
+
+		                nexusArtifactUploader artifacts: [
+			          [
+					    artifactId: 'simple-app', 
+					    classifier: '', 
+					    file: "target/simple-app-7.0.0.war", 
+					    type: 'war'
+						 
+						 
+				  ]
+			        ], credentialsId: 'nexus3_ID', 
+				groupId: 'in.javahome', 
+				nexusUrl: 'http://18.191.36.142:8081/', 
+				nexusVersion: 'nexus3', 
+				protocol: 'http', 
+				repository: 'codd-app-release', 
+				version: '7.0.0'
+			  
+	                  }
+	             }
+            }
+       }
 }
