@@ -12,7 +12,7 @@ pipeline {
 		stage('Upload artifacts to nexus'){
 		   steps{
 		      script{
-			        def version = sh script: 'mvn help:evaluate -Dexpression=project.version -q -DforceStdout', returnStdout: true
+			       // def version = sh script: 'mvn help:evaluate -Dexpression=project.version -q -DforceStdout', returnStdout: true
 
 		                nexusArtifactUploader artifacts: [
 			          [
