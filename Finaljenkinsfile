@@ -1,7 +1,7 @@
 pipeline {
     agent any 
     tools {
-        maven 'apache-maven-3.6.3'
+        maven 'maven3'
     }
     stages{
         stage('Build'){
@@ -25,10 +25,10 @@ pipeline {
 				  ]
 			        ], credentialsId: 'nexus3_ID', 
 				groupId: 'in.javahome', 
-				nexusUrl: 'http://18.220.87.176:8081/', 
+				nexusUrl: 'http://18.223.190.19:8081/', 
 				nexusVersion: 'nexus3', 
 				protocol: 'http', 
-				repository: 'codd-app-release', 
+				repository: 'maven-snap', 
 				version: '14.0.0'
 			  
 	                  }
