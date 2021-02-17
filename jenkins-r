@@ -1,0 +1,38 @@
+pipeline {
+    agent any 
+    tools {
+        maven 'Maven'
+    }
+    stages{
+        stage('Build'){
+            steps{
+                sh script: 'mvn clean package'
+            }
+        }
+		stage('Upload artifacts to nexus'){
+		   steps{
+		      script{
+			        def version = sh script: 'mvn help:evaluate -Dexpression=project.version -q -DforceStdout', returnStdout: true
+
+		                nexusArtifactUploader artifacts: [
+			          [
+					    artifactId: 'simple-app', 
+					    classifier: '', 
+					    file: "/var/lib/jenkins/workspace/nexus/target/simple-app-${version}.war", 
+					    type: 'war'
+						 
+						 
+				  ]
+			        ], credentialsId: 'nexus3', 
+				groupId: 'in.javahome', 
+				nexusUrl: '18.223.190.19:8081', 
+				nexusVersion: 'nexus3', 
+				protocol: 'http', 
+				repository: 'maven-snap', 
+				version: "${version}"
+			  
+	                  }
+	             }
+            }
+       }
+}
