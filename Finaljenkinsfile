@@ -18,7 +18,7 @@ pipeline {
 			          [
 					    artifactId: 'simple-app', 
 					    classifier: '', 
-					    file: "target/simple-app-14.0.0.war", 
+					    file: "/var/lib/jenkins/workspace/nexus pipeline/target/simple-app-14.0.0.war", 
 					    type: 'war'
 						 
 						 
